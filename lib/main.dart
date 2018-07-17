@@ -8,9 +8,14 @@ import 'package:flutter_app/GridView.dart';
 import 'package:flutter_app/HorizontalList.dart';
 import 'package:flutter_app/ListViewLoadMore.dart';
 import 'package:flutter_app/LoadImage.dart';
+import 'package:flutter_app/LoginForm.dart';
+import 'package:flutter_app/LoginFormWithValidation.dart';
+import 'package:flutter_app/MyAppBar.dart';
+import 'package:flutter_app/MyAppRow.dart';
 import 'package:flutter_app/ScreenNaviDemo.dart';
 import 'package:flutter_app/ScreenNavigateToAndGetResultFrom.dart';
 import 'package:flutter_app/SendDataToScreen.dart';
+import 'package:flutter_app/SharedPreference.dart';
 import 'package:flutter_app/SimpleList.dart';
 import 'package:flutter_app/SwipeToDelete.dart';
 import 'package:flutter_app/WidgetAnimation.dart';
@@ -86,7 +91,7 @@ import 'package:flutter_app/WidgetAnimation.dart';
 //void main()=>runApp(new AnimFadeInOut());
 //fetch data
 //fetch data from server
-void main()=>runApp(new FetchData());
+void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -156,64 +161,89 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: new Text(widget.title),
       ),
-      body: new Center(
+      body:
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: new Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug paint" (press "p" in the console where you ran
-          // "flutter run", or select "Toggle Debug Paint" from the Flutter tool
-          // window in IntelliJ) to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+      new Column(
           children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      drawer: new Drawer(
-        child: new ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            new DrawerHeader(
-              child: new Text('Drawer Header'),
-              decoration: new BoxDecoration(
-                color: Colors.blue,
+            new Container(
+              color: const Color(0xabc12345),
+              height:100.0,
+              child:new Row(
+                children: <Widget>[
+                  new Expanded(
+                      child: new Container(
+                       height:200.0,
+                      color: const Color(0xFF00FF00),
+                      child:new Center(
+                        child:new Text('Deliver features faster', textAlign: TextAlign.center),
+                      )
+                    ),
+
+                  ),
+                  new Expanded(
+                    child: new Text('Craft beautiful UIs', textAlign: TextAlign.center),
+                  ),
+                  new Expanded(
+                    child: new FittedBox(
+                      fit: BoxFit.contain, // otherwise the logo will be tiny
+                      child: const FlutterLogo(),
+                    ),
+                  ),
+                ],
               ),
+
             ),
-            new ListTile(
-              title: new Text('Home'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                Navigator.pop(context);
-              },
+
+            new Container(
+
+              color: const Color(0xFF00FF00),
+
+              height: 100.0,
             ),
-            new ListTile(
-              title: new Text('Profile'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-              },
-            ),
+            new Container(
+
+              color: const Color(0xFF589459),
+
+              height: 100.0,
+            )
+
+
+
+
           ],
-        ),
-      ),
+    ),
+
+
+//      drawer: new Drawer(
+//        child: new ListView(
+//          // Important: Remove any padding from the ListView.
+//          padding: EdgeInsets.zero,
+//          children: <Widget>[
+//            new DrawerHeader(
+//              child: new Text('Drawer Header'),
+//              decoration: new BoxDecoration(
+//                color: Colors.blue,
+//              ),
+//            ),
+//            new ListTile(
+//              title: new Text('Home'),
+//              onTap: () {
+//                // Update the state of the app
+//                // ...
+//                Navigator.pop(context);
+//              },
+//            ),
+//            new ListTile(
+//              title: new Text('Profile'),
+//              onTap: () {
+//                // Update the state of the app
+//                // ...
+//              },
+//            ),
+//          ],
+//        ),
+//      ),
       floatingActionButton: new FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
