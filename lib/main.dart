@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/AnimFadeInOutDemo.dart';
-import 'package:flutter_app/ButtlonClickRipple.dart';
-import 'package:flutter_app/CustomInfiniteLoop.dart';
-import 'package:flutter_app/FetchDataFromServer.dart';
-import 'package:flutter_app/GestureDemo.dart';
-import 'package:flutter_app/GridView.dart';
-import 'package:flutter_app/HorizontalList.dart';
-import 'package:flutter_app/ListViewLoadMore.dart';
-import 'package:flutter_app/LoadImage.dart';
+import 'package:flutter_app/FormDesignDemo.dart';
 import 'package:flutter_app/LoginForm.dart';
-import 'package:flutter_app/LoginFormWithValidation.dart';
-import 'package:flutter_app/MyAppBar.dart';
-import 'package:flutter_app/MyAppRow.dart';
-import 'package:flutter_app/ScreenNaviDemo.dart';
-import 'package:flutter_app/ScreenNavigateToAndGetResultFrom.dart';
-import 'package:flutter_app/SendDataToScreen.dart';
-import 'package:flutter_app/SharedPreference.dart';
-import 'package:flutter_app/SimpleList.dart';
-import 'package:flutter_app/SwipeToDelete.dart';
-import 'package:flutter_app/WidgetAnimation.dart';
 
 
 
@@ -91,7 +73,7 @@ import 'package:flutter_app/WidgetAnimation.dart';
 //void main()=>runApp(new AnimFadeInOut());
 //fetch data
 //fetch data from server
-void main() => runApp(new MyApp());
+void main() => runApp(new LoginForm());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -118,15 +100,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -138,23 +111,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+       _counter++;
+    });
+  }
+
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
     return new Scaffold(
       appBar: new AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -162,57 +132,109 @@ class _MyHomePageState extends State<MyHomePage> {
         title: new Text(widget.title),
       ),
       body:
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      // Center is a layout widget. It takes a single child and positions it
+      // in the middle of the parent.
       new Column(
-          children: <Widget>[
-            new Container(
+        children: <Widget>[
+          new Expanded(
+            child: new Container(
               color: const Color(0xabc12345),
               height:100.0,
               child:new Row(
                 children: <Widget>[
-                  new Expanded(
+
+                    //new container
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
                       child: new Container(
-                       height:200.0,
-                      color: const Color(0xFF00FF00),
-                      child:new Center(
-                        child:new Text('Deliver features faster', textAlign: TextAlign.center),
-                      )
+
+                          child: new SizedBox(
+                            width: 50.0,
+                            //add button
+                            child:new RaisedButton(
+
+                                key: null, onPressed:_incrementCounter,
+                                color: const Color(0xFFe0e0e0),
+                                child:
+                                new Text(
+                                  "+",
+                                  style: new TextStyle(fontSize: 25.0,
+                                      color: const Color(0xFF000000),
+                                      fontWeight: FontWeight.w200,
+                                      fontFamily: "Roboto"),
+                                )
+                            ),
+                            //end here button body
+                          )
+
+                      ),
                     ),
 
-                  ),
                   new Expanded(
-                    child: new Text('Craft beautiful UIs', textAlign: TextAlign.center),
-                  ),
-                  new Expanded(
-                    child: new FittedBox(
-                      fit: BoxFit.contain, // otherwise the logo will be tiny
-                      child: const FlutterLogo(),
+                    child:Center(
+                      child: new Text(
+
+                        "$_counter",
+                        style: new TextStyle(fontSize:37.0,
+                            color: const Color(0xFFc62a2a),
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "Roboto"),
+                      ),
                     ),
                   ),
+
+
+
+                     Padding(
+                       padding: const EdgeInsets.all(30.0),
+                       child: new Container(
+
+                       child: new SizedBox(
+                                width: 50.0,
+                         //add button
+                          child:new RaisedButton(
+
+                              key: null, onPressed: _decrementCounter,
+                              color: const Color(0xFFe0e0e0),
+                              child:
+                              new Text(
+                                "-",
+                                style: new TextStyle(fontSize: 25.0,
+                                    color: const Color(0xFF000000),
+                                    fontWeight: FontWeight.w200,
+                                    fontFamily: "Roboto"),
+                              )
+                          ),
+                          //end here button body
+                        ),
+                       ),
+                     ),
+
                 ],
               ),
 
             ),
-
-            new Container(
+          ),
+          new Expanded(
+            child: new Container(
 
               color: const Color(0xFF00FF00),
 
               height: 100.0,
             ),
-            new Container(
+          ),
+          new Expanded(
+            child:new Image.network(
+              'https://github.com/flutter/website/blob/master/_includes/code/layout/lakes/images/lake.jpg?raw=true',
+              fit:BoxFit.fill,
+              width: 1000.0,
+              height: 1000.0,
+            ),
+          ),
 
-              color: const Color(0xFF589459),
 
-              height: 100.0,
-            )
-
-
-
-
-          ],
-    ),
+        ],
+      ),
 
 
 //      drawer: new Drawer(
