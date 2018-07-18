@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// This is the type used by the popup menu below.
+enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
 
 void main() {
   runApp(new LoginForm());
@@ -32,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool checkboxValuePhy = false;
   bool checkboxValueEng = false;
   double sliderValue = 0.0;
-  int age=0;
+  int age=1;
 
   int _radioValue = 0;
   final _formKey = GlobalKey<FormState>();
@@ -43,7 +45,33 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
         actions: <Widget>[
-          new IconButton(icon: const Icon(Icons.save), onPressed: () {})
+          new IconButton(icon: const Icon(Icons.save), onPressed: () {}),
+          // This menu button widget updates a _selection field (of type WhyFarther,
+          // not shown here).
+          new PopupMenuButton<WhyFarther>(
+            onSelected: (WhyFarther result) { setState(() { //_selection = result;
+            });
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.harder,
+                child: const Text('Working a lot harder'),
+              ),
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.smarter,
+                child: const Text('Being a lot smarter'),
+              ),
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.selfStarter,
+                child: const Text('Being a self-starter'),
+              ),
+              const PopupMenuItem<WhyFarther>(
+                value: WhyFarther.tradingCharter,
+                child: const Text('Placed in charge of trading charter'),
+              ),
+            ],
+          ),
+
         ],
       ),
       body:
@@ -336,21 +364,48 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     //end here
                     //slider
+
+                    //gender section
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 5.0, 0.0, 5.0),
+                      child: new Row(
+
+                        children: <Widget>[
+                          new Text('Age'),
+                        ],
+                      ),
+                    ),
                     new Slider(
                       value: age.toDouble(),
                       min: 1.0,
-                      max: 50.0,
-                      divisions: 50,
-                      label: '$sliderValue',
+                      max: 100.0,
+                      divisions: 100,
+                      label: '$age',
                       onChanged: (double newValue) {
                         setState(() {
-                          age = newValue.round();
+                          age = newValue.toInt();
+
                         });
                       },
                     ),  //for slider min and max values
-                    new Text("$sliderValue"),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0),
+                child: new Row(
+                  children: <Widget>[
+                      new Text("$age"),
+                                    ]
+                ),
+              ),
+                    //end here
+
+                    //popupmenubuttons
+
+
+
 
                     //end here
+
+
 
                     //space box
                     const SizedBox(height: 30.0),
