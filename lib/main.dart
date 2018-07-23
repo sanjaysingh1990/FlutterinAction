@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/MyTabs.dart';
 
 
 
@@ -71,7 +72,7 @@ import 'package:flutter/material.dart';
 //void main()=>runApp(new AnimFadeInOut());
 //fetch data
 //fetch data from server
-void main() => runApp(new MyApp());
+void main() => runApp(new MyTabs());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
